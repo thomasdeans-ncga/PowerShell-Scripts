@@ -16,11 +16,8 @@ if ($session -match $regex_true) {
 $Session = ($Session.Substring($session.IndexOf("#")+7)).Substring(0,8).Trim() 
 } elseif ($Session -match $regex_false) {
 $Session = $Session.Substring($session.IndexOf($Matches.Values)-1,6).Trim() 
-} else { "Error"; quit
-
+} else { "Error"; exit; }
 logoff $session /server:$computer
-
-}
 }
 "Removing User profile [$user] from [$computer]..."
 Invoke-Command -ComputerName $computer -ScriptBlock {
